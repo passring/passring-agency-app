@@ -79,13 +79,7 @@ const privateKeyString = route.hash.slice(1)
 const loading = ref(true)
 const success = ref(false)
 const voteRegResp = ref<VoteReg | null>(null)
-const voteAgencyResp = ref<VoteAgency | null>({
-  id: 'e65fd44f-1efb-40ca-b39b-2af71ecc20e5',
-  title: 'Тестове',
-  description: 'Чи варто жити',
-  options: ['Ні', 'Звісно ні'],
-  active: true
-})
+const voteAgencyResp = ref<VoteAgency | null>(null)
 const error = ref<string | null>(null)
 const voteSelected = ref<number | null>(null)
 
@@ -108,16 +102,16 @@ fetch(`${import.meta.env.VITE_REG_API}/vote/${voteId}/ring`)
     error.value = 'Помилка завантаження даних. Спробуй оновити сторінку'
   })
 
-// fetch(`${import.meta.env.VITE_AGENCY_API}/voting/${voteId}`)
-//   .then((res) => res.json())
-//   .then((data) => {
-//     voteAgencyResp.value = data
-//     loading.value = false
-//   })
-//   .catch((err) => {
-//     console.warn(err)
-//     error.value = 'Помилка завантаження даних. Спробуй оновити сторінку'
-//   })
+fetch(`${import.meta.env.VITE_AGENCY_API}/voting/${voteId}`)
+  .then((res) => res.json())
+  .then((data) => {
+    voteAgencyResp.value = data
+    loading.value = false
+  })
+  .catch((err) => {
+    console.warn(err)
+    error.value = 'Помилка завантаження даних. Спробуй оновити сторінку'
+  })
 
 const submitVote = async () => {
   let ring = voteRegResp.value!.keys!.map((key) => new PublicKey(key))
