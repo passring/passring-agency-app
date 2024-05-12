@@ -1,0 +1,16 @@
+{
+  "name": "passring-wasm",
+  "version": "0.1.0",
+  "files": [
+    "passring_wasm_bg.wasm",
+    "passring_wasm.js",
+    "passring_wasm_bg.js",
+    "passring_wasm.d.ts"
+  ],
+  "module": "passring_wasm.js",
+  "types": "passring_wasm.d.ts",
+  "sideEffects": [
+    "./passring_wasm.js",
+    "./snippets/*"
+  ]
+}
