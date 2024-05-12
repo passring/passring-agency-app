@@ -2,6 +2,7 @@
   <div>
     <h1 v-if="error">Помилка 😓</h1>
     <h2 v-else-if="success">🫡</h2>
+    <h2 v-else-if="!voteAgencyResp?.active">😉</h2>
     <div v-else-if="loading" style="display: flex; align-items: center; justify-content: center">
       <LoadingIcon />
     </div>
@@ -16,6 +17,7 @@
     <p v-if="error">{{ error }}</p>
     <h2 v-else-if="success">Дякуємо, ваш голос враховано!</h2>
     <div v-else-if="loading">Завантажуємо інформацію...</div>
+    <h2 v-else-if="!voteAgencyResp?.active">Голосування ще не почалося або вже закінчилося</h2>
     <div v-else-if="voteAgencyResp">
       <ul>
         <li v-for="(option, index) in voteAgencyResp?.options" :key="index">
