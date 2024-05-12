@@ -169,7 +169,6 @@ button span {
 
 ul {
   width: 100%;
-  max-width: 400px;
   min-width: 250px;
   display: flex;
   flex-direction: column;
